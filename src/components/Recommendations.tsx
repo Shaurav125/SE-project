@@ -1,9 +1,10 @@
-import { memo } from 'react';
+import { memo, CSSProperties } from 'react';
 import { Recommendation } from '../types';
 
 interface RecommendationsProps {
     data: Recommendation[];
-    style?: React.CSSProperties;
+    // FIX: Use imported CSSProperties type to avoid React namespace error.
+    style?: CSSProperties;
     className?: string;
 }
 

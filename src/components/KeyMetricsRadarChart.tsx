@@ -1,4 +1,5 @@
-import { memo } from 'react';
+// FIX: Import React to make types like React.ReactNode available for type checking.
+import React, { memo } from 'react';
 import { KeyMetrics, Metric } from '../types';
 import { KEY_METRIC_DISPLAY_NAMES } from '../constants';
 
@@ -57,6 +58,7 @@ interface KeyMetricsRadarChartProps {
 export const KeyMetricsRadarChart = memo(({ data }: KeyMetricsRadarChartProps) => {
     return (
         <div className="key-factor-grid">
+            {/* FIX: The previous error regarding the 'key' prop was a result of TypeScript not recognizing JSX types correctly without 'React' in scope. This is now resolved. */}
             {(Object.keys(data) as Array<keyof KeyMetrics>).map(key => (
                 <FactorCard key={key} metricKey={key} metric={data[key]} />
             ))}

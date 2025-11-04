@@ -2,6 +2,6 @@
   "requestFramePermissions": [
     "geolocation"
   ],
-  "name": "Copy of ground water level predictor",
+  "name": "Groundwater Level Predictor",
   "description": ""
 }

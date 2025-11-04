@@ -1,7 +1,8 @@
-import { memo } from 'react';
+import { memo, CSSProperties } from 'react';
 
 interface ForecastMethodologyProps {
-    style?: React.CSSProperties;
+    // FIX: Use imported CSSProperties type to avoid React namespace error.
+    style?: CSSProperties;
 }
 
 export const ForecastMethodology = memo(({ style }: ForecastMethodologyProps) => (

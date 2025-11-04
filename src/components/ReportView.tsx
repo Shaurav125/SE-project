@@ -1,4 +1,5 @@
-import { memo, Children, isValidElement, cloneElement, useState, useEffect, CSSProperties } from 'react';
+// FIX: Import React to make types like React.ReactNode and React.ReactElement available.
+import React, { memo, Children, isValidElement, cloneElement, useState, useEffect, CSSProperties } from 'react';
 import { marked } from 'marked';
 import { PredictionData, FutureOutlook } from '../types';
 import { WaterLevelGauge } from './WaterLevelGauge';
@@ -7,6 +8,7 @@ import { HistoricalTrendChart } from './HistoricalTrendChart';
 import { Recommendations } from './Recommendations';
 import { RainfallChart } from './RainfallChart';
 import { ForecastMethodology } from './ForecastMethodology';
+import { MapView } from './MapView';
 
 interface ReportViewProps {
     data: PredictionData;
@@ -38,7 +40,8 @@ const StaggerContainer = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
-const OutlookSection = ({ title, outlook, className, style }: { title: string; outlook: FutureOutlook; className: string; style?: React.CSSProperties; }) => {
+// FIX: Use imported CSSProperties type directly.
+const OutlookSection = ({ title, outlook, className, style }: { title: string; outlook: FutureOutlook; className: string; style?: CSSProperties; }) => {
     const confidenceClass = `confidence-${outlook.confidence.toLowerCase()}`;
 
     return (
@@ -121,6 +124,7 @@ export const ReportView = memo(({ data, onReset }: ReportViewProps) => {
                     <h3 className="section-title">Key Factor Analysis</h3>
                     <KeyMetricsRadarChart data={data.keyMetrics} />
                 </section>
+                <MapView coordinates={data.coordinates} locationName={data.locationName} />
                 <HistoricalTrendChart data={data.historicalWaterLevels} predictionData={data.predictedWaterLevels} />
                 <RainfallChart data={data.rainfallData} />
                 <OutlookSection title="Short-Term Outlook (1-5 Years)" outlook={report.shortTerm} className="outlook-short-term" />

@@ -1,9 +1,10 @@
-import { memo, useMemo } from 'react';
+import { memo, useMemo, CSSProperties } from 'react';
 import { WaterLevelIndex } from '../types';
 
 interface WaterLevelGaugeProps {
     data: WaterLevelIndex;
-    style?: React.CSSProperties;
+    // FIX: Use imported CSSProperties type to avoid React namespace error.
+    style?: CSSProperties;
 }
 
 const polarToCartesian = (centerX: number, centerY: number, radius: number, angleInDegrees: number) => {
